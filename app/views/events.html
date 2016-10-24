@@ -1,0 +1,59 @@
+<div ng-show="eventsController.isAuth()">
+  <label for="currentevents"></label>
+  <button auto-focus title="My events" id="currentevents"  ui-sref="events.current" type="button"
+    class="btn btn-primary btn-md btn-round">  <span  class="glyphicon glyphicon-list-alt "></span></button>
+  <label for="events"></label>
+  <button title="All events" id="events"  ui-sref="events.all"type="button"
+    class="btn btn-primary btn-md btn-round">  <span  class="glyphicon glyphicon-list "></span></button>
+
+  <!-- <label for="map"></label>
+  <button  id="map"  ui-sref="home" type="button"
+    class="btn btn-primary btn-md btn-round">  <span  class="glyphicon glyphicon-map-marker"></span></button>
+
+    <label for="calendar"></label>
+    <button  id="calendar"  ui-sref="calendar" type="button"
+    class="btn btn-primary btn-md btn-round">  <span  class="glyphicon glyphicon-calendar"></span></button> -->
+
+  <label for="newEvent"></label>
+  <button  title="Add new event" id="newEvent"  ui-sref="newevent"  type="button"
+    class="btn btn-primary btn-md btn-round pull-right">  <span  class="glyphicon glyphicon-plus"></span></button>
+</div>
+<br/>
+<br/>
+
+<div ng-show="!eventsController.isAuth()">
+  <div class="card card-outline-primary text-xs-center">
+  <div class="card-block">
+    <blockquote class="card-blockquote">
+      <cite> Let our advance worrying become advance thinking and planning.</cite>
+      <footer><cite title="Winston Churchill">Winston Churchill</cite></footer>
+    </blockquote>
+  </div>
+</div>
+</div>
+
+
+<div ui-view> </div>
+<div ng-show="!eventsController.isAuth()" class="col-md-offset-1"  ng-repeat="obj in eventsController.getEvents() track by $index">
+  <div  class="col-md-5 col-sm-5 demo-card-square mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title mdl-card--expand">
+      <h3 style="color:#2d2d2d" class="mdl-card__title-text">- {{obj.event.title}} -<br/> <b>{{obj.event.type}}</b></h3>
+    </div>
+
+    <div class="mdl-card__supporting-text">
+      <hr class="style-one"/>
+      <img name="host" class="img-circle" src="/images/img_avatar.png" width="20" height="20" alt="Host">
+          <b>Hosted by:</b>{{obj.event.host}}
+      </img>
+      <br/>
+      <img name="host" class="img-circle" src="/images/img_person.png" width="20" height="20" alt="Host">
+          <b>Guests({{obj.event.guests.length}})</b>
+      </img>
+      <br/>
+      <span class="glyphicon glyphicon-map-marker">{{obj.event.location.split(',')[0]}}</span>
+      <hr class="style-one"/>
+          <span class="glyphicon glyphicon-time">{{obj.event.fromDate.split(" GMT+")[0]}}</span>
+    </div>
+    </div>
+  </div>
+</div>

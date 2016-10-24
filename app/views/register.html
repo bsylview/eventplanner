@@ -1,0 +1,94 @@
+<div class="row">
+      <div class="col-sm-8 col-md-8 col-md-offset-2">
+          <h1 class="text-center login-title">Create a new account</h1>
+<div ng-controller="RegisterCtrl as ctrl" class="account-wall">
+    <form class="form-signin" name="regForm">
+
+
+        <div class="form-group" ng-class="{ 'has-error' : regForm.user_name.$invalid }">
+          <label for="user_name">Name*</label>
+          <input auto-focus id="user_name" placeholder="Name"
+            ng-minlength="5"  type="text" name="user_name" class="form-control"
+             ng-model="user.name" required>
+             <div  style="color:#800000	" ng-messages="regForm.user_name.$error"    ng-if="regForm.user_name.$dirty">
+               <div ng-message="required">This field is required</div>
+               <div ng-message="minlength">Name must be over 5 characters</div>
+             </div>
+        </div>
+
+
+
+        <div class="form-group" ng-class="{ 'has-error' : regForm.email.$invalid }">
+          <label for="email">Email*</label>
+          <input  ng-click="regError = false" id="email" placeholder="Email"
+            type="email" name="email" class="form-control"
+             ng-model="user.email" required>
+             <div  style="color:#800000	" ng-messages="regForm.email.$error"    ng-if="regForm.email.$dirty">
+               <div ng-message="required">This field is required</div>
+               <div ng-message="email">Enter a valid email address</div>
+             </div>
+             <p  style="color:#800000" ng-show="regError">{{regErrorMessage}}</p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : regForm.password.$invalid }">
+          <label for="password">Password*</label>
+          <input required id="password" placeholder="Password" type="password" name="password" class="form-control" ng-model="user.password"
+              ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/">
+          <p  style="color:#800000"  class="help-block" ng-show="regForm.password.$invalid" ng-if="regForm.password.$dirty">
+            Password should be at least 8 characters long
+              and should contain one number,one character and one special character.</p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : regForm.repeatpassword.$invalid }">
+          <label for="repassword">Repeat password*</label>
+          <input required id="repassword" placeholder="Repeat password" type="password" name="repeatpassword" class="form-control" ng-model="user.repeatpassword"
+            ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/">
+          <p  style="color:#800000" class="help-block" ng-show="user.password != null && user.password != user.repeatpassword">Passwords do not match!</p>
+        </div>
+
+
+        <fieldset class="block">
+              <header class="block__header">
+                <legend><h3 >More to share?</h3></legend>
+              </header>
+              <div class="form-group" ng-class="{ 'has-error' : regForm.user_employer.$invalid }">
+                  <label for="user_employer">Employer</label>
+                  <input id="user_employer" placeholder="Employer"
+                    ng-minlength="5"  type="text" name="user_employer" class="form-control"
+                     ng-model="user.employer">
+                   <div  style="color:#800000	" ng-messages="regForm.user_employer.$error"    ng-if="regForm.user_employer.$dirty">
+                      <div ng-message="minlength">Employer name must be over 5 characters</div>
+                   </div>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : regForm.user_jobtitle.$invalid }">
+                    <label for="user_jobtitle">Job title</label>
+                    <input id="user_jobtitle" placeholder="Job title"
+                      ng-minlength="5"  type="text" name="user_jobtitle" class="form-control"
+                       ng-model="user.jobtitle">
+                     <div  style="color:#800000	" ng-messages="regForm.user_jobtitle.$error"    ng-if="regForm.user_jobtitle.$dirty">
+                        <div ng-message="minlength">Job title must be over 5 characters</div>
+                     </div>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error': regForm.user_birthday.$invalid }">
+                    <label for="user_birthday">Birthday</label>
+                    <div  class="input-group" datetimepicker
+                         ng-model="user.birthday" options="ctrl.dateOptions">
+                        <input name="user_birthday" id="user_birthday" type="text" class="form-control"/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+
+
+
+        <button type="submit" ladda-loading="login.loading" data-style="expand-right" ng-click="registerController.register(user)"
+        ng-disabled="!user.email || !user.password || !user.repeatpassword || !user.name || (user.password != user.repeatpassword)"
+        class="btn btn-lg segoe-ui-light ladda-button btn-primary btn-block">Register</button>
+    </form>
+</div>
+</div>
+</div>

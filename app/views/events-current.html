@@ -1,0 +1,43 @@
+<div ng-show="eventsController.isAuth()">
+      <h3>My events</h3>
+      <hr class="style-one"/>
+      <div  class="col-md-offset-1"  ng-repeat="obj in eventsController.getEvents() track by $index">
+
+        <div  class="col-md-5 col-sm-5 demo-card-square mdl-card mdl-shadow--2dp">
+          <div class="mdl-card__title mdl-card--expand">
+            <h3 style="color:#2d2d2d" class="mdl-card__title-text">- {{obj.event.title}} -<br/> <b>{{obj.event.type}}</b></h3>
+          </div>
+
+          <div class="mdl-card__supporting-text">
+            <hr class="style-one"/>
+            <img name="host" class="img-circle" src="/images/img_avatar.png" width="20" height="20" alt="Host">
+                <b>Hosted by:</b>{{obj.event.host}}
+            </img>
+            <br/>
+            <img name="host" class="img-circle" src="/images/img_person.png" width="20" height="20" alt="Host">
+                <b>Guests({{obj.event.guests.length}})</b>
+            </img>
+            <br/>
+
+              <!-- <div  id="guests" name="guests" ng-repeat="guest in obj.event.guests  track by $index">
+                <img class="img-circle" src="/images/img_avatar.png" width="20" height="20" alt="Host">
+                 {{guest}}
+               </div> -->
+            <!-- <div class="col-xs-6 form-group">
+               <label for="message">Message:</label>
+              <h5 id="message" name="message" style="word-wrap: break-word; width: 13em" > {{obj.event.message}}</h5>
+            </div> -->
+            <span class="glyphicon glyphicon-time">{{obj.event.fromDate.split(" GMT+")[0]}}</span>
+            <br/>
+            <span class="glyphicon glyphicon-map-marker">{{obj.event.location.split(',')[0]}}</span>
+            <hr class="style-one"/>
+          </div>
+
+                <div class="mdl-card__actions mdl-card--border">
+                      <button   ng-show="eventsController.isAuth()" name="Delete event" value="Delete event" type="button"
+                        class="btn btn-primary btn-md pull-right" ng-click="eventsController.deleteEvent(obj)"></span>Delete</button>
+                  </div>
+          </div>
+        </div>
+      </div>
+</div>

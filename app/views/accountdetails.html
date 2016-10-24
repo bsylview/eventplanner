@@ -1,0 +1,64 @@
+<div ng-show="accountController.isAuth()" ng-controller="AccountdetailsCtrl as ctrl"  class="row">
+      <div class="col-sm-8 col-md-8 col-md-offset-2">
+<div class="account-wall">
+  <form class="form-signin" name="account" role="form" validate>
+    <fieldset class="block">
+          <header class="block__header">
+            <legend><h3 >Account details</h3></legend>
+          </header>
+
+          <div class="form-group" ng-class="{ 'has-error' : account.user_name.$invalid }">
+              <label for="user_name">Name*</label>
+              <input auto-focus  id="user_name" placeholder="Name"
+                ng-minlength="5"  type="text" name="user_name" class="form-control"
+                 ng-model="ctrl.user.name" required>
+                 <div  style="color:#800000	" ng-messages="account.user_name.$error"    ng-if="account.user_name.$dirty">
+                   <div ng-message="required">This field is required</div>
+                   <div ng-message="minlength">Name must be over 5 characters</div>
+                 </div>
+            </div>
+
+
+          <div class="form-group" ng-class="{ 'has-error' : account.user_employer.$invalid }">
+              <label for="user_employer">Employer</label>
+              <input id="user_employer" placeholder="Employer"
+                ng-minlength="5"  type="text" name="user_employer" class="form-control"
+                 ng-model="ctrl.user.employer">
+               <div  style="color:#800000	" ng-messages="account.user_employer.$error"    ng-if="account.user_employer.$dirty">
+                  <div ng-message="minlength">Employer name must be over 5 characters</div>
+               </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : account.user_jobtitle.$invalid }">
+                <label for="user_jobtitle">Job title</label>
+                <input id="user_jobtitle" placeholder="Job title"
+                   ng-minlength="5"  type="text" name="user_jobtitle" class="form-control"
+                   ng-model="ctrl.user.jobtitle">
+                 <div  style="color:#800000	" ng-messages="account.user_jobtitle.$error"    ng-if="account.user_jobtitle.$dirty">
+                    <div ng-message="minlength">Job title must be over 5 characters</div>
+                 </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error': account.user_birthday.$invalid }">
+                <label for="user_birthday">Birthday</label>
+                <div class="input-group" datetimepicker
+                     ng-model="ctrl.user.birthday" options="ctrl.dateOptions">
+                    <input name="user_birthday" id="user_birthday" type="text" class="form-control"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="col-sm-8 col-md-8 col-md-offset-2">
+                <button id="updateAccount" name="updateAccount"
+                 class="btn btn-md btn-primary "
+                  type="submit" ng-click="ctrl.saveUserDetails(ctrl.user)">Update</button>
+                <button id="cancelBtn" name="cancelBtn" class="btn btn-md btn-primary"  ui-sref="events.current"  type="button">Cancel</button>
+        </div>
+
+    </form>
+ </div>
+ </div>
+</div>

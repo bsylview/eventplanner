@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head >
+    <meta charset="utf-8">
+    <title>Event Planner</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- Bootstrap -->
+            <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbuild -->
+
+
+<!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/forms.css">
+    <link rel="stylesheet" href="styles/bootstrap-datetimepicker.css">
+  <!-- endbuild -->
+
+
+
+  </head>
+  <body ng-app="eventPlannerProjectApp" ng-controller="mainCtrl">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+
+
+    <div   class="header">
+
+      <div class="navbar navbar-default" role="navigation">
+        <div  class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+                   <span class="sr-only">Toggle navigation</span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+           </button>
+
+             <a  style="color:white" class="navbar-brand" ui-sref="events.current">Event Planner</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a style="color:white"  ng-show="!getCurrentUser()" id="singin" ui-sref="login">Sign in</a></li>
+                <li><a style="color:white"  ng-show="getCurrentUser()" id="logout" ng-click="logOut()" ui-sref="events">Log out</a></li>
+                <li><a style="color:white"  ng-show="getCurrentUser()" id="accountdetails" ui-sref="accountdetails">Account</a></li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div background="images/event.png"  class="container">
+      <div ui-view>
+      </div>
+
+    </div>
+
+
+
+    <div color="red"   class="footer">
+    </div>
+
+
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/ngPlacesAutocomplete/ngPlacesAutocomplete.min.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <script src="https://rawgit.com/atais/angular-eonasdan-datetimepicker/0.3.6/dist/angular-eonasdan-datetimepicker.min.js"></script>
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/register.js"></script>
+        <script src="scripts/controllers/events.js"></script>
+        <script src="scripts/services/firebaseservice.js"></script>
+        <script src="scripts/services/eventservice.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/newevent.js"></script>
+        <script src="scripts/services/eventservice.js"></script>
+        <script src="scripts/controllers/accountdetails.js"></script>
+    <!-- endbuild -->
+
+    <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyC_ZLFGMY_uaodRuaRmrti6ACxQIDEEU0M",
+        authDomain: "eventplanner-bc2ec.firebaseapp.com",
+        databaseURL: "https://eventplanner-bc2ec.firebaseio.com",
+        storageBucket: "eventplanner-bc2ec.appspot.com",
+        messagingSenderId: "699988593069"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+</body>
+</html>
